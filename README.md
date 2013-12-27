@@ -56,7 +56,10 @@ PS: `acts_as_priceable` can take more than one field at a time, so go ahead and 
 acts_as_priceable :retail_price, :employee_price, :cost
 ```
 
-PS2: how it powerful `acts_as_priceable :charge, initializer: ->(price_in_cents) { Money.new (price_in_cents), 'CNY' }`
+PS2: how it powerful
+```ruby
+acts_as_priceable :charge, initializer: ->(price_in_cents) { Money.new (price_in_cents), 'CNY' }
+```
 
 ## Contributing
 
