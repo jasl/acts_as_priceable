@@ -9,7 +9,7 @@ ActiveRecord.
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'acts_as_priceable'
+gem 'acts_as_priceable', github: 'jasl/acts_as_priceable'
 ```
 
 And then execute:
