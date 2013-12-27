@@ -11,12 +11,12 @@ class Item
   acts_as_priceable :price, :class => BigDecimal
 
   attr_accessor :charge_in_cents
-  acts_as_priceable :charge
+  acts_as_priceable :charge, initializer: ->(price_in_cents) { Money.new (price_in_cents), 'CNY' }
 end
 
 describe Item do
   let :item do
-    Item.new :fee => 10, :price_in_cents => 200
+    Item.new :fee => 10, :price_in_cents => 200, :charge_in_cents => 1000
   end
 
   describe '#fee' do
@@ -57,8 +57,12 @@ describe Item do
   end
 
   describe '#charge' do
-    it 'should be nil' do
-      item.charge.must_be_nil
+    it 'should be an instance of Money' do
+      item.charge.must_be_instance_of Money
+    end
+
+    it 'should be equal to cents' do
+      item.charge.cents.must_equal 1000
     end
   end
 end
